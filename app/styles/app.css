@@ -1,0 +1,184 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: Candara;
+  color: #505050;
+}
+
+body {
+  background: url('images/pattern.png');
+}
+
+.menu {
+
+}
+
+.menu ul{
+  list-style: none;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu ul > li {
+  background: #fff;
+  width: 150px;
+  padding: 10px;
+  border: 1px solid #d0d0d0;
+  margin: 5px;
+  /*background: #180b7a;*/
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.menu ul > li:hover {
+  background: #000;
+}
+
+.menu ul > li a {
+  color: #d0d0d0;
+  text-decoration: none;
+}
+
+.menu ul > li + li:before {
+  padding-right: 0.3em;
+}
+
+.outer-container {
+  width: 960px;
+  height: 960px;
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  transform: rotate(-45deg);
+  margin: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.inner-container {
+  width: 940px;
+  height: 940px;
+  background-color: #fff;
+  background-image: url("images/pattern.png");
+  transform: rotate(45deg);
+  margin: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+  border: 1px solid #d0d0d0;
+}
+
+.logo img {
+  width: 150px;
+  cursor: pointer;
+}
+
+/*ABOUT*/
+.title {
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 1px solid #d0d0d0;
+  font-weight: normal;
+}
+
+.service {
+  width: 33%;
+  height: 415px;
+  padding: 10px;
+  text-align: center;
+
+
+  /*background: #000;*/
+
+  /*transform: rotate(-45deg);*/
+  /*border-radius: 100%;*/
+  /*background: #180b7a;*/
+}
+/*.s1 {
+  background: url("images/cloud.png") no-repeat;
+  background-size: 200px;
+  background-position: center center;
+}
+
+.s2 {
+  background: url("images/e-commerce.png") no-repeat;
+  background-size: 200px;
+  background-position: center center;
+}
+
+.s3 {
+  background: url("images/cloud.png") no-repeat;
+  background-size: 200px;
+  background-position: center center;
+}
+
+.s4 {
+  background: url("images/sys-admin.png") no-repeat;
+  background-size: 200px;
+  background-position: center center;
+}*/
+/*
+.s5 {
+  background: url("images/management.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+
+.s6 {
+  background: url("images/mobile.jpg");
+  background-size: cover;
+  background-position: center center;
+}*/
+
+.service h2 {
+  color: #d0d0d0;
+  font-weight: normal;
+}
+
+.row div {
+    display: inline-block;
+}
+
+
+
+.contacts p>span {
+  font-weight: bold;
+}
+
+.contacts-form {
+  border: 1px solid #d0d0d0;
+  padding: 10px;
+  background: #fff;
+}
+.contacts-form input[type="submit"],
+.contacts-form input[type="reset"] {
+  display: inline-block;
+  margin: 5px 0;
+  background: #d0d0d0;
+  color: #fff;
+  text-transform: uppercase;
+  border: 1px solid #d0d0d0;
+}
+
+.contacts-form input[type="submit"]:hover,
+.contacts-form input[type="reset"]:hover {
+  background: #fff;
+  color: #505050;
+}
+
+.contacts-form input, textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #d0d0d0;
+  padding: 10px 0;
+  resize: none;
+}
+
