@@ -1,4 +1,4 @@
-<h1 class="title">Our contacts</h1>
+<h2 class="title">Our contacts</h2>
 <div class="contacts">
     <p>
         <span>Address:</span>
@@ -14,26 +14,57 @@
     </p>
     <p>
         <span>Follow us:</span>
-
+        <i class="fa fa-google" aria-hidden="true"></i>
+        <i class="fa fa-facebook" aria-hidden="true"></i>
+        <i class="fa fa-linkedin" aria-hidden="true"></i>
     </p>
 </div>
 
 
-<h1 class="title">Ask your question</h1>
-<form class="contacts-form">
-    <input type="text" id="name" placeholder="Your name"/>
+<h2 class="title">Ask your question</h2>
+<form class="form" name="form" novalidate>
+    <input type="text" id="name" placeholder="Your name" data-ng-model="name" required/>
     <br/>
 
-    <input type="email" id="email" placeholder="Your email"/>
+    <input type="email" id="email" placeholder="Your email" data-ng-model="email" overwrite-email name="overwrittenEmail"/>
     <br/>
 
-    <input id="phone" placeholder="Your phone"/>
+    <input type="tel" placeholder="Your phone" data-ng-model="phone" integer name="validPhone"/>
     <br/>
 
-    <textarea id="msg" placeholder="Type your message"></textarea>
+    <textarea id="msg" placeholder="Type your message" data-ng-model="msg"></textarea>
     <br/>
 
+    <p class="user-info" data-ng-show="name">
+        <span>Your name:</span>
+        {{name}}
+    </p>
+
+    <p class="user-info" data-ng-show="email || form.overwrittenEmail.$error.email">
+        <span>Your email:</span>
+        <span data-ng-show="email">
+            {{email}}
+        </span>
+        <span class="error" data-ng-show="form.overwrittenEmail.$error.email">
+            Email isn't valid!
+        </span>
+    </p>
+
+    <p class="user-info" data-ng-show="phone || form.validPhone.$error.integer">
+        <span>Your phone:</span>
+        <span data-ng-show="phone">
+            {{phone}}
+        </span>
+        <span class="error" data-ng-show="form.validPhone.$error.integer">
+            Phone isn't valid!
+        </span>
+    </p>
+
+    <p class="user-info" data-ng-show="msg">
+        <span>Your message:</span>
+        {{msg}}
+    </p>
     <input type="submit" class="btn"/>
-    <input type="reset" class="btn"/>
+    <input type="reset" class="btn" data-ng-click="name=email=phone=msg=''"/>
 </form>
 
