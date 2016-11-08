@@ -58,6 +58,22 @@ body {
     left: 0;
     bottom: 0;
     right: 0;
+    -webkit-animation: rot 30s infinite ease;
+    -moz-animation: rot 30s infinite ease;
+}
+
+@keyframes rot {
+    0%   { transform: translateZ(20px);}
+    100% { transform: rotate(180deg) translateZ(145px);}
+}
+@-webkit-keyframes rot {
+    0%   { -webkit-transform: translateZ(20px);}
+    100% { -webkit-transform: rotate(180deg) translateZ(145px);}
+}
+
+@-moz-keyframes rot {
+    0%   { -moz-transform: translateZ(20px);}
+    100% { -moz-transform: rotate(180deg) translateZ(145px);}
 }
 
 .inner-container {
@@ -65,7 +81,6 @@ body {
     height: 940px;
     background-color: #fff;
     background-image: url("../assets/images/pattern.png");
-    transform: rotate(45deg);
     margin: auto;
     position: fixed;
     top: 0;
@@ -87,6 +102,48 @@ body {
     text-align: center;
     border-bottom: 1px solid #d0d0d0;
     font-weight: normal;
+}
+
+
+.title i {
+    -webkit-animation: pulse 3s infinite ease;
+    -moz-animation: pulse 3s infinite ease;
+    animation: pulse 3s infinite ease;
+}
+@-webkit-keyframes pulse {
+    from {
+        -webkit-transform: scale3d(1.2, 1.2, 1) rotate(10deg);
+        transform: scale3d(1.2, 1.2, 1) rotate(10deg);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+
+    to {
+        -webkit-transform: scale3d(1, 1, 1) rotate(-10deg);
+        transform: scale3d(1, 1, 1) rotate(-10deg);
+    }
+}
+
+@keyframes pulse {
+    from {
+        opacity: 0.5;
+        -webkit-transform: scale3d(1.2, 1.2, 1) rotate(10deg);
+        transform: scale3d(1.2, 1.2, 1) rotate(10deg);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1) rotate(-10deg);
+        transform: scale3d(1, 1, 1) rotate(-10deg);
+    }
 }
 
 .service {
@@ -144,8 +201,8 @@ body {
     font-weight: normal;
 }
 
-.row div {
-    display: inline-block;
+.row {
+    display: inline-flex;
 }
 
 /*CONTACTS*/
@@ -198,7 +255,10 @@ body {
     padding: 10px 0;
     resize: none;
 }
-
+.form input.ng-invalid {
+    background: rgba(255, 0, 0, 0.15);
+    transition: all 1s;
+}
 .form input:hover,
 .form textarea:hover,
 .form input:focus,
@@ -242,17 +302,75 @@ body {
     vertical-align: middle;
 }
 
-.modal-window {
-    width: 700px;
-    height: 502px;
-    background: #d0d0d0;
-    position: fixed;
-    top: 80px;
-    left: 615px;
-    z-index: 3;
-    border: 1px solid #fff;
-    box-shadow: 0 0 5px #808080;
-    /*display: none;*/
+.ng-modal-overlay {
+    /* полупорозрачный DIV, который охватывает весь экран */
+    position:absolute;
+    z-index:9999;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:#000000;
+    opacity: 0.8;
+}
+.ng-modal-dialog {
+    /* Отцентрированный даилог с тенью */
+    z-index:10000;
+    position: absolute;
+    width: 50%;
+
+    /* Центрирование */
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+
+    background-color: #fff;
+    box-shadow: 4px 4px 80px #000;
+
+}
+.ng-modal-dialog-content {
+    padding: 0 10px;
+    text-align: left;
+}
+.ng-modal-close {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 120%;
+    display: inline-block;
+    font-weight: bold;
+    font-family: 'arial', 'sans-serif';
+}
+
+.modal-content div {
+    width: 50%;
+    text-align: center;
+}
+
+.modal-content input {
+    width: 95%;
+    margin: 10px 0;
+    border: 1px solid #d0d0d0;
+    padding: 10px;
+}
+
+.modal-content input:focus {
+    outline: none;
+}
+
+.modal-content input[type="submit"],
+.modal-content input[type="reset"] {
+    text-transform: uppercase;
+}
+
+.modal-content input[type="submit"]:hover,
+.modal-content input[type="reset"]:hover {
+    background: #909090;
+    color: #fff;
 }
 
 .login {
@@ -266,8 +384,8 @@ body {
     text-align: center;
     padding: 10px 0;
     text-transform: uppercase;
-    color: #FFF;
-    border-bottom: 1px solid #fff;
+    color: #909090;
+    border-bottom: 1px solid #d0d0d0;
     -webkit-border-radius: 0 0 10px 10px;
     -moz-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
@@ -275,13 +393,15 @@ body {
 
 .login li:hover,
 .login li:active {
-    background-color: #000;
+    -webkit-box-shadow: inset 0 -15px 15px #eeeeee;
+    -moz-box-shadow: inset 0 -15px 15px #eeeeee;
+    box-shadow: inset 0 -15px 15px #eeeeee;
     cursor: pointer;
-    transition: all 1s;
+    transition: all 0.5s;
 }
 
 .login li:first-child {
-    border-right: 1px solid #fff;
+    border-right: 1px solid #d0d0d0;
 }
 
 

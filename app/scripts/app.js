@@ -13,4 +13,10 @@ angular.module ( 'myApp', [
         } ).when ( '/view2', {
             templateUrl: 'app/views/view2.html'
         } ).otherwise ( 'app/views/view1.html' );
-    } ] );
+    } ] )
+    .controller ( 'myCtrl', function ( $scope ) {
+        $scope.modalShown = false;
+        $scope.toggleModal = function () {
+            $scope.modalShown = !$scope.modalShown;
+        }
+    } );
