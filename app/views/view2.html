@@ -46,7 +46,7 @@
         {{name}}
     </p>
 
-    <p class="user-info" data-ng-show="form.email.$valid || form.overwrittenEmail.$error.email">
+    <p class="user-info" data-ng-show="email || form.overwrittenEmail.$error.email">
         <span>Your email:</span>
         <span data-ng-show="email">
             {{email}}
@@ -56,7 +56,7 @@
         </span>
     </p>
 
-    <p class="user-info" data-ng-show="form.phone.$valid || form.validPhone.$error.integer">
+    <p class="user-info" data-ng-show="phone || form.validPhone.$error.integer">
         <span>Your phone:</span>
         <span data-ng-show="phone">
             {{phone}}
@@ -71,6 +71,6 @@
         {{msg}}
     </p>
     <input type="submit" class="btn" value="send"/>
-    <input type="reset" class="btn" data-ng-click="reset()" value="reset"/>
+    <input type="reset" class="btn" data-ng-click="name=email=msg=phone=''" value="reset"/>
 </form>
 

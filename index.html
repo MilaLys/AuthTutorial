@@ -47,30 +47,42 @@
 <div class="user" data-ng-click='toggleModal()'>
     <i class="fa fa-user" aria-hidden="true"></i>
 </div>
-<modal-dialog show='modalShown' width='750px' height='360px'>
+<modal-dialog show='modalShown' width='750px' height='430px'>
     <ul class="login">
-        <li>Log In</li>
+        <li data-ng-class="">Log In</li>
         <li>Sign In</li>
     </ul>
 
     <div class="row modal-content">
         <div>
-            <input type="text" placeholder="Your name"/>
-            <input type="password" placeholder="Your password"/>
-            <input type="submit" value="Send"/>
-            <input type="reset" value="Reset"/>
+            <form name="loginForm" novalidate>
+                <input type="text" placeholder="Your name" data-ng-model="uName" name="uName" required/>
+                <span data-ng-show="loginForm.uName.$error.required">User name is required!</span>
+
+                <input type="password" placeholder="Your password" data-ng-model="uPassword" name="uPassword" required/>
+                <span data-ng-show="loginForm.uPassword.$error.required">Password is required!</span>
+
+                <input type="submit" value="Send"/>
+                <input type="reset" value="Reset"/>
+            </form>
         </div>
         <div>
-            <input type="text" placeholder="Your name"/>
-            <input type="password" placeholder="Your password"/>
-            <input type="password" placeholder="Confirm your password"/>
-            <input type="submit" value="Send"/>
-            <input type="reset" value="Reset"/>
+            <form name="signinForm" novalidate>
+                <input type="text" placeholder="Your name" data-ng-model="name" name="name" required />
+                <span data-ng-show="signinForm.name.$error.required">User name is required!</span>
+
+                <input type="password" placeholder="Your password" data-ng-model="password" name="password" required/>
+                <span data-ng-show="signinForm.password.$error.required">Password is required!</span>
+
+                <input type="password" placeholder="Confirm your password" data-ng-model="confirm" name="confirm" required/>
+                <span data-ng-show="signinForm.confirm.$error.required">Confirm password!</span>
+
+                <input type="submit" value="Send"/>
+                <input type="reset" value="Reset"/>
+            </form>
         </div>
     </div>
 </modal-dialog>
-
-
 
 
 <!--[if lt IE 7]>
