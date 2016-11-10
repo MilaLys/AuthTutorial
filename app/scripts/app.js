@@ -18,5 +18,8 @@ angular.module ( 'myApp', [
         $scope.modalShown = false;
         $scope.toggleModal = function () {
             $scope.modalShown = !$scope.modalShown;
-        }
+        },
+            $scope.change = function () {
+                console.log ( 'We have a change!' );
+            }
     } );

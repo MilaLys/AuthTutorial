@@ -34,7 +34,10 @@ body {
 }
 
 .menu ul > li:hover {
-    background: #000;
+    background: #180b7a;
+    -webkit-animation: 1s ease;
+    -o-animation: 1s ease;
+    animation: 1s ease;
 }
 
 .menu ul > li a {
@@ -63,17 +66,33 @@ body {
 }
 
 @keyframes rot {
-    0%   { transform: translateZ(20px);}
-    100% { transform: rotate(180deg) translateZ(145px);}
+    0% {
+        transform: translateZ(20px);
+    }
+    50%{
+        background-color: rgba(255, 255, 255, 1);
+    }
+    100% {
+        transform: rotate(180deg) translateZ(145px);
+    }
 }
+
 @-webkit-keyframes rot {
-    0%   { -webkit-transform: translateZ(20px);}
-    100% { -webkit-transform: rotate(180deg) translateZ(145px);}
+    0% {
+        -webkit-transform: translateZ(20px);
+    }
+    100% {
+        -webkit-transform: rotate(180deg) translateZ(145px);
+    }
 }
 
 @-moz-keyframes rot {
-    0%   { -moz-transform: translateZ(20px);}
-    100% { -moz-transform: rotate(180deg) translateZ(145px);}
+    0% {
+        -moz-transform: translateZ(20px);
+    }
+    100% {
+        -moz-transform: rotate(180deg) translateZ(145px);
+    }
 }
 
 .inner-container {
@@ -104,12 +123,13 @@ body {
     font-weight: normal;
 }
 
-
 .title i {
     -webkit-animation: pulse 3s infinite ease;
     -moz-animation: pulse 3s infinite ease;
     animation: pulse 1s infinite ease;
+    color: #180b7a;
 }
+
 @-webkit-keyframes pulse {
     from {
         -webkit-transform: scale3d(1.2, 1.2, 1);
@@ -213,7 +233,7 @@ body {
     height: 30px;
     text-align: center;
     line-height: 30px;
-    background: #505050;
+    background: #180b7a;
 }
 
 .contacts i:hover {
@@ -231,8 +251,8 @@ body {
     background: #fff;
 }
 
-.form input[type="submit"],
-.form input[type="reset"] {
+.send,
+.reset {
     display: inline-block;
     margin: 5px 0;
     background: #d0d0d0;
@@ -242,10 +262,14 @@ body {
     transition: all 2s;
 }
 
+.active-send-btn {
+    background: #180b7a;
+}
+
 .form input[type="submit"]:hover,
 .form input[type="reset"]:hover {
-    background: #fff;
-    color: #505050;
+    background: #180b7a;
+    color: #fff;
 }
 
 .form input, textarea {
@@ -255,10 +279,12 @@ body {
     padding: 10px 0;
     resize: none;
 }
+
 .form input.ng-invalid {
     background: rgba(255, 0, 0, 0.15);
     transition: all 1s;
 }
+
 .form input:hover,
 .form textarea:hover,
 .form input:focus,
@@ -275,7 +301,9 @@ body {
     font-weight: bold;
     font-style: normal;
 }
-
+.text-animation {
+    animation: zoomIn 3s ease reverse;
+}
 .error {
     color: red;
     font-weight: normal;
@@ -294,7 +322,7 @@ body {
 }
 
 .user:hover {
-    background: #000;
+    background: #180b7a;
 }
 
 .user i {
@@ -304,18 +332,19 @@ body {
 
 .ng-modal-overlay {
     /* полупорозрачный DIV, который охватывает весь экран */
-    position:absolute;
-    z-index:9999;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-color:#000000;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
     opacity: 0.8;
 }
+
 .ng-modal-dialog {
     /* Отцентрированный даилог с тенью */
-    z-index:10000;
+    z-index: 10000;
     position: absolute;
     width: 50%;
 
@@ -330,10 +359,12 @@ body {
     box-shadow: 4px 4px 80px #000;
 
 }
+
 .ng-modal-dialog-content {
     padding: 0 10px;
     text-align: left;
 }
+
 .ng-modal-close {
     position: absolute;
     top: 3px;
@@ -378,7 +409,8 @@ body {
     margin: 0;
     list-style-type: none;
 }
-.login li{
+
+.login li {
     width: 50%;
     float: left;
     text-align: center;
@@ -403,7 +435,6 @@ body {
 .login li:first-child {
     border-right: 1px solid #d0d0d0;
 }
-
 
 /*ANIMATION*/
 .animated {

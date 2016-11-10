@@ -28,8 +28,8 @@
     <i class="fa fa-question" aria-hidden="true"></i>
     Ask your question
 </h2>
-<form class="form" name="form" novalidate>
-    <input type="text" id="name" placeholder="Your name" data-ng-model="name"/>
+<form class="form" name="form" novalidate >
+    <input type="text" id="name" placeholder="Your name" data-ng-model="name" ng-change="change()" ng-click="send='active-send-btn'"/>
     <br/>
 
     <input type="email" id="email" placeholder="Your email" data-ng-model="email" overwrite-email name="overwrittenEmail"/>
@@ -42,13 +42,15 @@
     <br/>
 
     <p class="user-info" data-ng-show="name">
-        <span>Your name:</span>
-        {{name}}
+        <span>Your name:
+            <span data-ng-bind="name"></span>
+        </span>
+
     </p>
 
     <p class="user-info" data-ng-show="email || form.overwrittenEmail.$error.email">
         <span>Your email:</span>
-        <span data-ng-show="email">
+        <span data-ng-show="email" data-ng-cloak>
             {{email}}
         </span>
         <span class="error" data-ng-show="form.overwrittenEmail.$error.email">
@@ -70,7 +72,7 @@
         <span>Your message:</span>
         {{msg}}
     </p>
-    <input type="submit" class="btn" value="send"/>
-    <input type="reset" class="btn" data-ng-click="name=email=msg=phone=''" value="reset"/>
+    <input type="submit" class="btn send" value="send" data-ng-class="send"/>
+    <input type="reset" class="btn reset" data-ng-click="name=email=msg=phone=''" value="reset"/>
 </form>
 
