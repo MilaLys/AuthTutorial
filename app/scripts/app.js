@@ -18,8 +18,15 @@ angular.module ( 'myApp', [
         $scope.modalShown = false;
         $scope.toggleModal = function () {
             $scope.modalShown = !$scope.modalShown;
-        },
-            $scope.change = function () {
-                console.log ( 'We have a change!' );
+        };
+        $scope.change = function () {
+            console.log ( 'We have a change!' );
+        };
+        $scope.password = '';
+        $scope.confirmPassword = function ( confirmPassword, password ) {
+            if ( confirmPassword != password ) {
+                return true;
             }
+            return false;
+        }
     } );

@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: Candara;
     color: #505050;
+    user-select: none;
 }
 
 body {
@@ -61,8 +62,8 @@ body {
     left: 0;
     bottom: 0;
     right: 0;
-    -webkit-animation: rot 30s infinite ease;
-    -moz-animation: rot 30s infinite ease;
+    -webkit-animation: rot 30s infinite linear;
+    -moz-animation: rot 30s infinite linear;
 }
 
 @keyframes rot {
@@ -92,6 +93,90 @@ body {
     }
     100% {
         -moz-transform: rotate(180deg) translateZ(145px);
+    }
+}
+
+.outer-container1 {
+    width: 960px;
+    height: 960px;
+    background: #fff;
+    border: 1px solid #d0d0d0;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    -webkit-animation: rot1 20s infinite ease-out;
+    -moz-animation: rot1 20s infinite ease-out;
+}
+
+@keyframes rot1 {
+    0% {
+        transform: translateZ(40px);
+    }
+    100% {
+        transform: rotate(-180deg) translateZ(145px);
+    }
+}
+
+@-webkit-keyframes rot1 {
+    0% {
+        -webkit-transform: translateZ(40px);
+    }
+    100% {
+        -webkit-transform: rotate(-180deg) translateZ(145px);
+    }
+}
+
+@-moz-keyframes rot1 {
+    0% {
+        -moz-transform: translateZ(40px);
+    }
+    100% {
+        -moz-transform: rotate(-180deg) translateZ(145px);
+    }
+}
+
+.outer-container2 {
+    width: 960px;
+    height: 960px;
+    border: 1px solid #d0d0d0;
+    background: #fff;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    -webkit-animation: rot2 10s infinite ease-in;
+    -moz-animation: rot2 10s infinite ease-in;
+}
+
+@keyframes rot2 {
+    0% {
+        transform: translateZ(120px);
+    }
+    100% {
+        transform: rotate(90deg) translateZ(100px);
+    }
+}
+
+@-webkit-keyframes rot2 {
+    0% {
+        -webkit-transform: translateZ(120px);
+    }
+    100% {
+        -webkit-transform: rotate(90deg) translateZ(100px);
+    }
+}
+
+@-moz-keyframes rot2 {
+    0% {
+        -moz-transform: translateZ(120px);
+    }
+    100% {
+        -moz-transform: rotate(90deg) translateZ(100px);
     }
 }
 

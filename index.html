@@ -38,7 +38,10 @@
         </li>
     </ul>
 </nav>
-<div class="outer-container" data-ng-mouseenter="$animate.cancel()"></div>
+<div class="outer-container"></div>
+<div class="outer-container1"></div>
+<div class="outer-container2"></div>
+
 <div class="inner-container animated zoomIn">
     <div ng-view></div> <!--for content that will be changed-->
 </div>
@@ -77,6 +80,7 @@
 
                 <input type="password" placeholder="Confirm your password" data-ng-model="confirm" name="confirm" required/>
                 <span data-ng-show="signinForm.confirm.$error.required">Confirm password!</span>
+                <span data-ng-show="confirmPassword(confirm, password)">Password is not the same!</span>
 
                 <input type="submit" value="Send" data-ng-click="send()"/>
                 <input type="reset" value="Reset"/>
