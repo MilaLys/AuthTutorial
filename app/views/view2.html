@@ -28,51 +28,73 @@
     <i class="fa fa-question" aria-hidden="true"></i>
     Ask your question
 </h2>
-<form class="form" name="form" novalidate >
-    <input type="text" id="name" placeholder="Your name" data-ng-model="name" ng-change="change()" ng-click="send='active-send-btn'"/>
-    <br/>
+<div ng-controller="View2Ctrl">
+    <form class="form" name="form" novalidate data-ng-submit="submit()">
+        <input type="text"
+               placeholder="Your name"
+               data-ng-model="data.name"
+               data-ng-change="change()"
+               data-ng-click="send='active-send-btn'"
+        />
+        <br/>
 
-    <input type="email" id="email" placeholder="Your email" data-ng-model="email" overwrite-email name="overwrittenEmail"/>
-    <br/>
+        <input type="email"
+               placeholder="Your email"
+               data-ng-model="data.email"
+               overwrite-email
+               name="overwrittenEmail"
+        />
+        <br/>
 
-    <input type="tel" placeholder="Your phone" data-ng-model="phone" integer name="validPhone"/>
-    <br/>
+        <input type="tel"
+               placeholder="Your phone"
+               data-ng-model="data.phone"
+               integer
+               name="validPhone"
+        />
+        <br/>
 
-    <textarea id="msg" placeholder="Type your message" data-ng-model="msg"></textarea>
-    <br/>
+    <textarea placeholder="Type your message"
+              data-ng-model="data.msg"
+    >
 
-    <p class="user-info" data-ng-show="name">
+    </textarea>
+        <br/>
+
+        <p class="user-info" data-ng-show="data.name">
         <span>Your name:
-            <span data-ng-bind="name"></span>
+            <span data-ng-bind="data.name"></span>
         </span>
 
-    </p>
+        </p>
 
-    <p class="user-info" data-ng-show="email || form.overwrittenEmail.$error.email">
-        <span>Your email:</span>
-        <span data-ng-show="email" data-ng-cloak>
-            {{email}}
+        <p class="user-info" data-ng-show="data.email || form.overwrittenEmail.$error.email">
+            <span>Your email:</span>
+        <span data-ng-show="data.email" data-ng-cloak>
+            {{data.email}}
         </span>
         <span class="error" data-ng-show="form.overwrittenEmail.$error.email">
             Email isn't valid!
         </span>
-    </p>
+        </p>
 
-    <p class="user-info" data-ng-show="phone || form.validPhone.$error.integer">
-        <span>Your phone:</span>
-        <span data-ng-show="phone">
-            {{phone}}
+        <p class="user-info" data-ng-show="data.phone || form.validPhone.$error.integer">
+            <span>Your phone:</span>
+        <span data-ng-show="data.phone">
+            {{data.phone}}
         </span>
         <span class="error" data-ng-show="form.validPhone.$error.integer">
             Phone isn't valid!
         </span>
-    </p>
+        </p>
 
-    <p class="user-info" data-ng-show="msg">
-        <span>Your message:</span>
-        {{msg}}
-    </p>
-    <input type="submit" class="btn send" value="send" data-ng-class="send"/>
-    <input type="reset" class="btn reset" data-ng-click="name=email=msg=phone=''" value="reset"/>
-</form>
+        <p class="user-info" data-ng-show="data.msg">
+            <span>Your message:</span>
+            {{data.msg}}
+        </p>
+        <input type="submit" class="btn send" value="send" data-ng-class="send"/>
+        <input type="reset" class="btn reset" data-ng-click="name=email=msg=phone=''" value="reset"/>
+    </form>
+</div>
+
 
