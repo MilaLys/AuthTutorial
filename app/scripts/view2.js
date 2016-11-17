@@ -9,7 +9,7 @@ angular.module( 'myApp.view2', [ 'ngRoute' ] )
         } );
     } ] )
 
-    .controller( 'View2Ctrl',  function ($scope, $http) {
+    .controller( 'View2Ctrl',  function ($scope, $http, $templateCache) {
         $scope.data = {
             name: '',
             email: '',
@@ -17,17 +17,17 @@ angular.module( 'myApp.view2', [ 'ngRoute' ] )
             msg: ''
         };
         $scope.submit = function () {
-            console.log($scope.data);
             $http({
                 method: 'POST',
                 url: '/request.php',
                 data: $scope.data
             }).success(function(response){
                 if(response == 'OK'){
-                    console.log('Your request has been received.');
+                    alert('Your request has been received.');
                 }else{
-                    console.log('The following error has appeared: \n' + response);
+                    alert('The following error has appeared: \n' + response);
                 }
+                $scope.data = {};
             });
         }
     }  );

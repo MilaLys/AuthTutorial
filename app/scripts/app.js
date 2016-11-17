@@ -14,7 +14,7 @@ angular.module ( 'myApp', [
             templateUrl: 'app/views/view2.html'
         } ).otherwise ( 'app/views/view1.html' );
     } ] )
-    .controller ( 'myCtrl', function ( $scope ) {
+    .controller ( 'myCtrl', function ( $scope, $http ) {
         $scope.modalShown = false;
         $scope.toggleModal = function () {
             $scope.modalShown = !$scope.modalShown;
@@ -28,5 +28,27 @@ angular.module ( 'myApp', [
                 return true;
             }
             return false;
+        };
+        $scope.data = {
+            uName: '',
+            uPassword: ''
+        };
+        $scope.submit = function() {
+            $http({
+                method: 'POST',
+                url: '/authorization.php',
+                data: $scope.data
+            }).success(function(response){
+                if(response == 'OK'){
+                    alert('You log in successfully.');
+                }else{
+                    alert('The following error has appeared: \n' + response);
+                }
+                $scope.data = {};
+            });
+        }
+        
+        $scope.signinForm = function(){
+            
         }
     } );
