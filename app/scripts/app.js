@@ -22,6 +22,10 @@ angular.module ( 'myApp', [
         $scope.change = function () {
             console.log ( 'We have a change!' );
         };
+
+        /*
+        CONFIRM PASSWORD
+         */
         $scope.password = '';
         $scope.confirmPassword = function ( confirmPassword, password ) {
             if ( confirmPassword != password ) {
@@ -29,26 +33,57 @@ angular.module ( 'myApp', [
             }
             return false;
         };
+
+        /*
+        SIGN IN
+         */
         $scope.data = {
-            uName: '',
-            uPassword: ''
+            name: '',
+            password: ''
         };
-        $scope.submit = function() {
-            $http({
+        $scope.submit = function () {
+            $http ( {
                 method: 'POST',
                 url: '/authorization.php',
                 data: $scope.data
-            }).success(function(response){
-                if(response == 'OK'){
-                    alert('You log in successfully.');
-                }else{
-                    alert('The following error has appeared: \n' + response);
+            } ).success ( function ( response ) {
+                if ( response == 'OK' ) {
+                    alert ( 'You sign in successfully.' );
+                } else {
+                    alert ( 'The following error has appeared: \n' + response );
                 }
                 $scope.data = {};
-            });
-        }
-        
-        $scope.signinForm = function(){
-            
+            } );
+        };
+
+        /*
+        LOG IN
+         */
+        $scope.login = {
+            uName: '',
+            uPassword: ''
+        };
+        $scope.login = function () {
+            var data = {
+                username: $scope.data.uName,
+                password: $scope.data.uPassword
+            };
+            $http ( {
+                method: 'POST',
+                url: '/login.php',
+                data: data
+            } ).success ( function ( response ) {
+                if ( response == 'OK' ) {
+                    alert ( 'You log in successfully.' );
+                    var user = angular.element ( document.querySelector ( ".log-in" ) );
+                    user.replaceWith ( '<a href="#" class="logout">Log out</a>' );
+                    $scope.modalShown = false;
+                } else {
+                    alert ( 'The following error has appeared: \n' + response );
+                }
+            } ).then ( function () {
+                $scope.data = {};
+            } );
+
         }
     } );

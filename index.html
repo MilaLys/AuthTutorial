@@ -20,6 +20,7 @@
     <script src="vendors/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body ng-controller="myCtrl">
+
 <header>
     <!--<div class="logo">
         <img src="images/logo.png" alt="logo" title="Home"/>
@@ -43,20 +44,22 @@
 <div class="outer-container2"></div>
 
 <div class="inner-container animated zoomIn">
-    <div ng-view></div> <!--for content that will be changed-->
+    <div ng-view>
+    </div> <!--for content that will be changed-->
 </div>
-<div class="user" data-ng-click='toggleModal()'>
-    <i class="fa fa-user" aria-hidden="true"></i>
-</div>
+<a href='javascript:void(0)' class="log-in"
+     data-ng-click='toggleModal()'
+>log in
+</a>
 <modal-dialog show='modalShown' width='750px' height='430px'>
     <ul class="login">
-        <li data-ng-class="">Log In</li>
+        <li>Log In</li>
         <li>Sign In</li>
     </ul>
 
     <div class="row modal-content">
         <div>
-            <form name="loginForm" data-ng-submit="submit()">
+            <form name="loginForm" data-ng-submit="login()">
                 <input type="text"
                        placeholder="Your name"
                        data-ng-model="data.uName"
@@ -82,17 +85,17 @@
             </form>
         </div>
         <div>
-            <form name="signinForm" data-ng-submit="signinForm()">
-                <input type="text" placeholder="Your name" data-ng-model="name" name="name" required/>
+            <form name="signinForm" data-ng-submit="submit()">
+                <input type="text" placeholder="Your name" data-ng-model="data.name" name="name" required/>
                 <span data-ng-show="signinForm.name.$error.required">User name is required!</span>
 
-                <input type="password" placeholder="Your password" data-ng-model="password" name="password" data-ng-minlength="8" data-ng-maxlength="10" required/>
+                <input type="password" placeholder="Your password" data-ng-model="data.password" name="password" data-ng-minlength="8" data-ng-maxlength="10" required/>
                 <span data-ng-show="signinForm.password.$error.required">Password is required!</span>
                 <span data-ng-show="signinForm.password.$error.minlength || signinForm.password.$error.maxlength">Password must be from 8 to 10 characters!</span>
 
                 <input type="password" placeholder="Confirm your password" data-ng-model="confirm" name="confirm" required/>
                 <span data-ng-show="signinForm.confirm.$error.required">Confirm password!</span>
-                <span data-ng-show="confirmPassword(confirm, password)">Password is not the same!</span>
+                <span data-ng-show="confirmPassword(confirm, data.password)">Password is not the same!</span>
 
                 <input type="submit" value="Send" data-ng-click="send()"/>
                 <input type="reset" value="Reset"/>

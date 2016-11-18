@@ -396,6 +396,7 @@ body {
 
 /*AUTHORIZATION*/
 .user {
+    background: red;
     position: fixed;
     right: 10px;
     top: 10px;
@@ -411,8 +412,27 @@ body {
 }
 
 .user i {
-    color: #909090;
+    color: #d0d0d0;
     vertical-align: middle;
+}
+
+.logout,
+.log-in {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 5px;
+    border: 1px solid #d0d0d0;
+}
+
+.logout:hover,
+.log-in:hover,
+.logout:active,
+.log-in:active {
+    background: #180b7a;
+    color:#fff;
 }
 
 .ng-modal-overlay {
