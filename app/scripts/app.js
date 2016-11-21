@@ -60,7 +60,8 @@ angular.module ( 'myApp', [
         /*
          LOG IN
          */
-        $scope.loggedin = false;
+        $scope.loggedin = isUserLogged;
+        console.log($scope.loggedin);
         $scope.login = {
             uName: '',
             uPassword: ''

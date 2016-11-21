@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>
 <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -153,6 +156,9 @@
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
 -->
+<script>
+    var isUserLogged = <?= isset($_SESSION['loggedin']) ? 'true' : 'false'; ?>;
+</script>
 <script src="vendors/jquery-3.1.1.min.js"></script>
 <script src="vendors/angular/angular.js"></script>
 <script src="vendors/angular-route/angular-route.js"></script>
