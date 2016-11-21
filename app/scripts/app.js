@@ -2,6 +2,7 @@
 
 // Declare app level module which depends on views, and components
 angular.module ( 'myApp', [
+    'restangular',
     'ngRoute',
     'myApp.view1',
     'myApp.view2'
@@ -14,7 +15,7 @@ angular.module ( 'myApp', [
             templateUrl: 'app/views/view2.html'
         } ).otherwise ( 'app/views/view1.html' );
     } ] )
-    .controller ( 'myCtrl', function ( $scope, $http ) {
+    .controller ( 'myCtrl', function ( $scope, $http, Restangular ) {
         $scope.modalShown = false;
         $scope.toggleModal = function () {
             $scope.modalShown = !$scope.modalShown;
@@ -24,7 +25,7 @@ angular.module ( 'myApp', [
         };
 
         /*
-        CONFIRM PASSWORD
+         CONFIRM PASSWORD
          */
         $scope.password = '';
         $scope.confirmPassword = function ( confirmPassword, password ) {
@@ -35,7 +36,7 @@ angular.module ( 'myApp', [
         };
 
         /*
-        SIGN IN
+         SIGN IN
          */
         $scope.data = {
             name: '',
@@ -57,33 +58,73 @@ angular.module ( 'myApp', [
         };
 
         /*
-        LOG IN
+         LOG IN
          */
+        $scope.loggedin = false;
         $scope.login = {
             uName: '',
             uPassword: ''
         };
+        /*$scope.login = function () {
+         var data = {
+         username: $scope.data.uName,
+         password: $scope.data.uPassword
+         };
+         $http ( {
+         method: 'POST',
+         url: '/login.php',
+         data: data
+         } ).success ( function ( response ) {
+         if ( response == 'OK' ) {
+         alert ( 'You log in successfully.' );
+         var user = angular.element ( document.querySelector ( ".log-in" ) );
+         $scope.modalShown = false;
+         $scope.loggedin = true;
+         } else {
+         alert ( 'The following error has appeared: \n' + response );
+         }
+         } ).then ( function () {
+         $scope.data = {};
+         } );
+         };*/
+
         $scope.login = function () {
             var data = {
                 username: $scope.data.uName,
                 password: $scope.data.uPassword
             };
-            $http ( {
-                method: 'POST',
-                url: '/login.php',
-                data: data
-            } ).success ( function ( response ) {
-                if ( response == 'OK' ) {
-                    alert ( 'You log in successfully.' );
-                    var user = angular.element ( document.querySelector ( ".log-in" ) );
-                    user.replaceWith ( '<a href="#" class="logout">Log out</a>' );
-                    $scope.modalShown = false;
-                } else {
-                    alert ( 'The following error has appeared: \n' + response );
-                }
-            } ).then ( function () {
-                $scope.data = {};
-            } );
+            var users = Restangular.all ( '/login.php' );
 
+            users
+                .post ( data )
+                .then ( function ( response ) {
+                    if ( response == 'OK' ) {
+                        alert ( 'You log in successfully.' );
+                        $scope.modalShown = false;
+                        $scope.loggedin = true;
+                        $scope.data = {};
+                    }
+                }, function ( response ) {
+                    if ( response != 'OK' ) {
+                        alert ( 'The following error has appeared: \n' + response );
+                    }
+                    alert ( 'The following error has appeared: \n' + response );
+                } );
+        };
+
+        $scope.users = {};
+        $scope.getUsers = function () {
+            Restangular.all ( '/login.php' ).getList ().then ( function ( users ) {
+                $scope.users = users;
+            } );
+            console.log (  $scope.users );
+
+        };
+
+        /*
+         SIGN OUT
+         */
+        $scope.signout = function () {
+            $scope.loggedin = false;
         }
     } );
