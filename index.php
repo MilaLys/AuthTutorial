@@ -60,7 +60,7 @@ session_start();
 <a href='javascript:void(0)'
    class="logout"
    data-ng-show="loggedin"
-   data-ng-click='signout()'
+   data-ng-click='logout()'
 >
     log out
 </a>
@@ -96,7 +96,6 @@ session_start();
                 <span data-ng-show="loginForm.uPassword.$error.minlength">Password is too short!</span>
                 <span data-ng-show="loginForm.uPassword.$error.maxlength">Password is too long!</span>
 
-                <button data-ng-click = 'getUsers()'>Get All Users</button>
                 <input type="submit" value="Send"/>
                 <input type="reset" value="Reset"/>
             </form>

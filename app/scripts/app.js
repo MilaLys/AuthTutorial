@@ -112,20 +112,11 @@ angular.module ( 'myApp', [
                     alert ( 'The following error has appeared: \n' + response );
                 } );
         };
-
-        $scope.users = {};
-        $scope.getUsers = function () {
-            Restangular.all ( '/login.php' ).getList ().then ( function ( users ) {
-                $scope.users = users;
-            } );
-            console.log (  $scope.users );
-
-        };
-
+        
         /*
          SIGN OUT
          */
-        $scope.signout = function () {
+        $scope.logout = function () {
             $scope.loggedin = false;
         }
     } );
