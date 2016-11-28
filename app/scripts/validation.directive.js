@@ -1,6 +1,6 @@
 'use strict'
 angular
-    .module ( 'myApp.view2' )
+    .module ( 'myApp.contacts' )
     .directive ( 'overwrite-email', function () {
         var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@example\.com$/i;
         return {

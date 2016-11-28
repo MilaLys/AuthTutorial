@@ -41,6 +41,10 @@ body {
     animation: 1s ease;
 }
 
+.active {
+    font-weight: bold;
+}
+
 .menu ul > li a {
     color: #909090;
     text-decoration: none;
@@ -49,6 +53,8 @@ body {
 .menu ul > li + li:before {
     padding-right: 0.3em;
 }
+
+
 
 .outer-container {
     width: 960px;

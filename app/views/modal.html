@@ -1,0 +1,80 @@
+<modal-dialog show='modalShown' width='750px' height='430px'>
+    <ul class="login">
+        <li>Log In</li>
+        <li>Sign In</li>
+    </ul>
+
+    <div class="row modal-content">
+        <div>
+            <form name="loginForm" data-ng-submit="login()">
+                <input type="text"
+                       autocomplete="off"
+                       placeholder="Your name"
+                       data-ng-model="data.uName"
+                       name="uName"
+                       required
+                />
+                <span data-ng-show="loginForm.uName.$error.required">User name is required!</span>
+
+                <input type="password"
+                       autocomplete="off"
+                       placeholder="Your password"
+                       data-ng-model="data.uPassword"
+                       name="uPassword"
+                       data-ng-minlength="8"
+                       data-ng-maxlength="10"
+                       required
+                />
+                <span data-ng-show="loginForm.uPassword.$error.required">Password is required!</span>
+                <span data-ng-show="loginForm.uPassword.$error.minlength">Password is too short!</span>
+                <span data-ng-show="loginForm.uPassword.$error.maxlength">Password is too long!</span>
+
+                <input type="submit" value="Send"/>
+                <input type="reset" value="Reset"/>
+            </form>
+        </div>
+        <div>
+            <form name="signinForm" data-ng-submit="submit()">
+                <input type="text"
+                       autocomplete="off"
+                       placeholder="Your name"
+                       data-ng-model="data.name"
+                       name="name"
+                       required
+                />
+                <span data-ng-show="signinForm.name.$error.required">User name is required!</span>
+
+                <input type="password"
+                       autocomplete="off"
+                       placeholder="Your password"
+                       data-ng-model="data.password"
+                       name="password"
+                       data-ng-minlength="8"
+                       data-ng-maxlength="10"
+                       required
+                />
+                <span data-ng-show="signinForm.password.$error.required">Password is required!</span>
+                <span data-ng-show="signinForm.password.$error.minlength || signinForm.password.$error.maxlength">Password must be from 8 to 10 characters!</span>
+
+                <input type="password"
+                       autocomplete="off"
+                       placeholder="Confirm your password"
+                       data-ng-model="confirm"
+                       name="confirm"
+                       required
+                />
+                <span data-ng-show="signinForm.confirm.$error.required">Confirm password!</span>
+                <span data-ng-show="confirmPassword(confirm, data.password)">Password is not the same!</span>
+
+
+                <input type="submit"
+                       value="Send"
+                       data-ng-click="send()"
+                />
+                <input type="reset"
+                       value="Reset"
+                />
+            </form>
+        </div>
+    </div>
+</modal-dialog>

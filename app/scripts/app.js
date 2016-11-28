@@ -2,20 +2,42 @@
 
 // Declare app level module which depends on views, and components
 angular.module ( 'myApp', [
+    'ui.router',
     'restangular',
     'ngRoute',
-    'myApp.view1',
-    'myApp.view2'
+    'myApp.about',
+    'myApp.blog',
+    'myApp.contacts'
+
 ] )
-    .config ( [ '$locationProvider', '$routeProvider', function ( $locationProvider, $routeProvider ) {
-        $locationProvider.hashPrefix ( '!' );
-        $routeProvider.when ( '/view1', {
-            templateUrl: 'app/views/view1.html'
-        } ).when ( '/view2', {
-            templateUrl: 'app/views/view2.html'
-        } ).otherwise ( 'app/views/view1.html' );
-    } ] )
+    .config ( function ( $stateProvider, $urlRouterProvider ) {
+        $urlRouterProvider.otherwise ( "/about" );
+        $stateProvider
+            .state ( 'about', {
+                url: "/about",
+                templateUrl: "app/views/about.html",
+                controller: 'AboutCtrl'
+            } )
+            .state ( 'blog', {
+                url: "/blog",
+                templateUrl: "app/views/blog.html",
+                controller: 'BlogCtrl'
+            } )
+            .state ( 'contacts', {
+                url: "/contacts",
+                templateUrl: "app/views/contacts.html",
+                controller: 'View2Ctrl'
+            } );
+    } )
+    
     .controller ( 'myCtrl', function ( $scope, $http, Restangular ) {
+
+        /**
+         * LoggedIn Status
+         * @type {boolean}
+         */
+        $scope.loggedin = false;
+
         $scope.modalShown = false;
         $scope.toggleModal = function () {
             $scope.modalShown = !$scope.modalShown;
@@ -60,12 +82,11 @@ angular.module ( 'myApp', [
         /*
          LOG IN
          */
-        $scope.loggedin = isUserLogged;
-        console.log($scope.loggedin);
-        $scope.login = {
-            uName: '',
-            uPassword: ''
-        };
+        /*$scope.loggedin = isUserLogged || false;
+         $scope.login = {
+         uName: '',
+         uPassword: ''
+         };*/
         /*$scope.login = function () {
          var data = {
          username: $scope.data.uName,
@@ -102,7 +123,7 @@ angular.module ( 'myApp', [
                     if ( response == 'OK' ) {
                         alert ( 'You log in successfully.' );
                         $scope.modalShown = false;
-                        $scope.loggedin = true;
+                        //$scope.loggedin = true;
                         $scope.data = {};
                     }
                 }, function ( response ) {
@@ -112,11 +133,18 @@ angular.module ( 'myApp', [
                     alert ( 'The following error has appeared: \n' + response );
                 } );
         };
-        
+
         /*
          SIGN OUT
          */
         $scope.logout = function () {
-            $scope.loggedin = false;
+            var users = Restangular.all ( '/logout.php' );
+            users
+                .post ()
+                .then ( function () {
+                    $scope.loggedin = false;
+                    //isUserLogged = false;
+                    alert ( 'You log out successfully.' );
+                } );
         }
     } );
